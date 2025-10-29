@@ -8,3 +8,13 @@ __pycache__/
 
 Pipfile
 test.py
+
+# =========================
+# Build / Distribution
+# =========================
+build/
+dist/
+*.egg-info/
+*.eggs/
+*.egg
+MANIFEST
