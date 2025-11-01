@@ -10,16 +10,17 @@ def create_llm(provider=None, model=None, api_key=None):
             return None
         provider = provider.lower()
         if provider == "openai":
-            return ChatOpenAI(model_name=model, openai_api_key=api_key)
+            return ChatOpenAI(model_name=model, openai_api_key=api_key, temperature=0)
         elif provider == "anthropic":
-            return ChatAnthropic(model=model, anthropic_api_key=api_key)
+            return ChatAnthropic(model=model, anthropic_api_key=api_key, temperature=0)
         elif provider == "google":
-            return ChatGoogleGenerativeAI(model=model, google_api_key=api_key)
+            return ChatGoogleGenerativeAI(model=model, google_api_key=api_key, temperature=0)
         elif provider == "huggingface":
             llm = HuggingFaceEndpoint(
                 repo_id=model,
                 task="text-generation",
-                huggingfacehub_api_token=api_key
+                huggingfacehub_api_token=api_key,
+                temperature=0
             )        
             return ChatHuggingFace(llm=llm)
         else:

@@ -8,6 +8,7 @@ class GibberishDetectionOutput(BaseModel):
 SCANNER_NAME = "gibberish_detection"
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
+SCANNER_TYPE = ["input", "output"]
 OUTPUT_MODEL = GibberishDetectionOutput
 
 def get_instruction_text() -> str:

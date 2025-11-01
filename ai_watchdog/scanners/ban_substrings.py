@@ -6,7 +6,7 @@ from typing import List
 SCANNER_NAME = "ban_substrings"
 DEFAULT_MODE = "logic"  # can be switched to "llm" if you want LLM-based scanning
 AVAILABLE_MODES = ["logic", "llm"]
-
+SCANNER_TYPE = ["input", "output"]
 
 class BanSubstringsOutput(BaseModel):
     result: bool = Field(..., description="True if text passes the check, False if it violates the rule.")

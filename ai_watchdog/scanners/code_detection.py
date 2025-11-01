@@ -8,6 +8,7 @@ class CodeDetectionOutput(BaseModel):
 SCANNER_NAME = "code_detection"
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
+SCANNER_TYPE = ["input", "output"]
 OUTPUT_MODEL = CodeDetectionOutput
 
 def get_instruction_text() -> str:

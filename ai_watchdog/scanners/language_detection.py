@@ -8,6 +8,7 @@ class LanguageDetectionOutput(BaseModel):
 
 SCANNER_NAME = "language_detection"
 DEFAULT_MODE = "llm"
+SCANNER_TYPE = ["input", "output"]
 AVAILABLE_MODES = ["llm"]
 OUTPUT_MODEL = LanguageDetectionOutput
 

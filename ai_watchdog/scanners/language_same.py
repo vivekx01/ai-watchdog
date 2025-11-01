@@ -7,6 +7,7 @@ class LanguageSameOutput(BaseModel):
 
 SCANNER_NAME = "language_same"
 DEFAULT_MODE = "llm"
+SCANNER_TYPE = ["output"]
 AVAILABLE_MODES = ["llm"]
 OUTPUT_MODEL = LanguageSameOutput
 

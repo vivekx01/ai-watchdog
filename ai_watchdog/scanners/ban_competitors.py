@@ -6,6 +6,7 @@ class BanCompetitorsOutput(BaseModel):
     details: Optional[str] = Field(None, description='Single line explanation')
 
 SCANNER_NAME = "ban_competitors"
+SCANNER_TYPE = ["input", "output"]
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
 OUTPUT_MODEL = BanCompetitorsOutput

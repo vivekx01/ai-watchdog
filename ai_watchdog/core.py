@@ -9,6 +9,41 @@ from .exceptions import (
         LogicScanError,
     )
 
+def validate_scanner_config(scanner_config, allowed_type: str):
+    """
+    Validate and filter scanners based on allowed type ('input' or 'output').
+
+    Args:
+        scanner_config (list): List of scanner configurations.
+        allowed_type (str): 'input' or 'output'
+
+    Returns:
+        list: Filtered and valid scanner configurations.
+    """
+    valid_configs = []
+    skipped = []
+
+    for config in scanner_config:
+        name = config.get("name")
+        if not name:
+            continue
+
+        try:
+            module = importlib.import_module(f"ai_watchdog.scanners.{name}")
+            scanner_types = getattr(module, "SCANNER_TYPE", ["input", "output"])
+
+            if allowed_type.lower() in [t.lower() for t in scanner_types]:
+                valid_configs.append(config)
+            else:
+                skipped.append(name)
+        except Exception as e:
+            raise ScannerImportError(name, e)
+
+    if skipped:
+        print(f"[Watchdog] Skipped scanners (not valid for {allowed_type}): {', '.join(skipped)}")
+
+    return valid_configs
+
 def run(llm, text, scanner_config):
     llm_scanners = []
     logic_scanners = []
@@ -72,6 +107,17 @@ def run(llm, text, scanner_config):
         for field_name, field_value in llm_result_model.model_dump().items():
             all_fields[field_name] = (type(field_value), field_value)
 
+    # --- Step 5: Compute overall result and failed scanners ---
+    failed_scanners = [
+        name for name, (_, data) in all_fields.items()
+        if isinstance(data, dict) and data.get("result") is False
+    ]
+    overall_result = len(failed_scanners) == 0
+
+    # Add extra fields to unified model
+    all_fields["overall_result"] = (bool, overall_result)
+    all_fields["failed_scanners"] = (list[str], failed_scanners)
+
     if not all_fields:
         return {}
 
@@ -83,7 +129,8 @@ class InputWatchdog:
         self.llm = create_llm(provider, model, api_key)
 
     def scan(self, text, scanner_config):
-        return run(self.llm, text, scanner_config)
+        valid_configs = validate_scanner_config(scanner_config, "input")
+        return run(self.llm, text, valid_configs)
         
 
 class OutputWatchdog:
@@ -91,4 +138,5 @@ class OutputWatchdog:
         self.llm = create_llm(provider, model, api_key)
 
     def scan(self, text, scanner_config):
-        return run(self.llm, text, scanner_config)
+        valid_configs = validate_scanner_config(scanner_config, "output")
+        return run(self.llm, text, valid_configs)

@@ -8,6 +8,8 @@ class BiasDetectionOutput(BaseModel):
 SCANNER_NAME = "bias_detection"
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
+SCANNER_TYPE = ["output"]
+
 OUTPUT_MODEL = BiasDetectionOutput
 
 def get_instruction_text() -> str:

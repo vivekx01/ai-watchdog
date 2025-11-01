@@ -7,19 +7,29 @@ class ToxicityDetectionOutput(BaseModel):
 
 SCANNER_NAME = "toxicity_detection"
 DEFAULT_MODE = "llm"
+SCANNER_TYPE = ["input", "output"]
 AVAILABLE_MODES = ["llm"]
 OUTPUT_MODEL = ToxicityDetectionOutput
 
 def get_instruction_text() -> str:
     """
     Build instruction text for the ToxicityDetection scanner.
-    
     Returns:
         str: Instruction text for detecting toxic, offensive, or harmful content.
     """
     return """
 You are a precise text classifier.
 
-Determine if the following text contains toxic, offensive, or harmful content.
-Examples include hate speech, insults, harassment, or abusive language.
+Your task is to determine whether the following text contains toxic, offensive, or harmful content.
+
+Toxic content includes:
+- Hate speech, slurs, or language attacking a group or individual.
+- Insults, harassment, or profanity directed at someone.
+- Threats or encouragement of violence or self-harm.
+Non-toxic content might include:
+- Playful or nonsensical text
+- Neutral or factual statements
+- Polite disagreement
+
 """
+

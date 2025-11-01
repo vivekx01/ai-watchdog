@@ -6,6 +6,7 @@ class RelevanceDetectionOutput(BaseModel):
     details: Optional[str] = Field(None, description='Single line explanation')
 
 SCANNER_NAME = "relevance_detection"
+SCANNER_TYPE = ["output"]
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
 OUTPUT_MODEL = RelevanceDetectionOutput

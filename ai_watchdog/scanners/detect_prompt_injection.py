@@ -8,6 +8,7 @@ class DetectPromptInjectionOutput(BaseModel):
 SCANNER_NAME = "detect_prompt_injection"
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
+SCANNER_TYPE = ["input"]
 OUTPUT_MODEL = DetectPromptInjectionOutput
 
 def get_instruction_text() -> str:

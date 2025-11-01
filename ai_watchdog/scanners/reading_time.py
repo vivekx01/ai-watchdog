@@ -7,6 +7,7 @@ class ReadingTimeOutput(BaseModel):
 
 SCANNER_NAME = "reading_time"
 DEFAULT_MODE = "logic"
+SCANNER_TYPE = ["output"]
 AVAILABLE_MODES = ["logic"]
 OUTPUT_MODEL = ReadingTimeOutput
 

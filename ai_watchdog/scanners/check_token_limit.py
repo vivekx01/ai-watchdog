@@ -9,6 +9,7 @@ class TokenLimitOutput(BaseModel):
 SCANNER_NAME = "check_token_limit"
 DEFAULT_MODE = "logic"
 AVAILABLE_MODES = ["logic"]
+SCANNER_TYPE = ["input"]
 OUTPUT_MODEL = TokenLimitOutput
 
 

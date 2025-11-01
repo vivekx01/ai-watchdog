@@ -8,6 +8,7 @@ class FactualConsistencyCheckOutput(BaseModel):
 SCANNER_NAME = "factual_consistency_check"
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
+SCANNER_TYPE = ["output"]
 OUTPUT_MODEL = FactualConsistencyCheckOutput
 
 def get_instruction_text() -> str:

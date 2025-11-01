@@ -8,6 +8,8 @@ class DetectRefusalsOutput(BaseModel):
 SCANNER_NAME = "detect_refusals"
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
+SCANNER_TYPE = ["output"]
+
 OUTPUT_MODEL = DetectRefusalsOutput
 
 def get_instruction_text() -> str:

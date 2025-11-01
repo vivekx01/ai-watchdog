@@ -8,6 +8,7 @@ class DetectMaliciousUrlsOutput(BaseModel):
 SCANNER_NAME = "detect_malicious_urls"
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
+SCANNER_TYPE = ["output"]
 OUTPUT_MODEL = DetectMaliciousUrlsOutput
 
 def get_instruction_text() -> str:

@@ -6,6 +6,7 @@ class BanCodeOutput(BaseModel):
     details: Optional[str] = Field(None, description='Single line explanation')
 
 SCANNER_NAME = "ban_code"
+SCANNER_TYPE = ["input"]
 DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
 OUTPUT_MODEL = BanCodeOutput

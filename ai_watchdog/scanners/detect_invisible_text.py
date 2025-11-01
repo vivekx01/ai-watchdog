@@ -9,6 +9,7 @@ class InvisibleTextOutput(BaseModel):
 SCANNER_NAME = "detect_invisible_text"
 DEFAULT_MODE = "logic"
 AVAILABLE_MODES = ["logic"]
+SCANNER_TYPE = ["input"]
 OUTPUT_MODEL = InvisibleTextOutput
 
 

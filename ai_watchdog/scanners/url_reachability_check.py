@@ -9,6 +9,7 @@ class UrlReachabilityOutput(BaseModel):
     unreachable_urls: Optional[List[str]] = Field(None, description='List of URLs that could not be reached')
 
 SCANNER_NAME = "url_reachability_check"
+SCANNER_TYPE = ["output"]
 DEFAULT_MODE = "logic"
 AVAILABLE_MODES = ["logic"]
 OUTPUT_MODEL = UrlReachabilityOutput

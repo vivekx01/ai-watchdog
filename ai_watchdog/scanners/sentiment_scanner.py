@@ -8,6 +8,7 @@ class SentimentAanalysisOutput(BaseModel):
 
 SCANNER_NAME = "sentiment_scanner"
 DEFAULT_MODE = "logic"
+SCANNER_TYPE = ["input", "output"]
 AVAILABLE_MODES = ["logic"]
 OUTPUT_MODEL = SentimentAanalysisOutput
 

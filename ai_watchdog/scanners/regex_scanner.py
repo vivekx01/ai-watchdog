@@ -8,6 +8,7 @@ class RegexScannerOutput(BaseModel):
     sanitized_text: Optional[str] = Field(None, description='Text with redacted patterns if applicable')
 
 SCANNER_NAME = "regex_scanner"
+SCANNER_TYPE = ["input", "output"]
 DEFAULT_MODE = "logic"
 AVAILABLE_MODES = ["logic"]
 OUTPUT_MODEL = RegexScannerOutput
