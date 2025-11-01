@@ -11,7 +11,7 @@ DEFAULT_MODE = "llm"
 AVAILABLE_MODES = ["llm"]
 OUTPUT_MODEL = RelevanceDetectionOutput
 
-def get_instruction_text(prompt_text: str, generated_text: str) -> str:
+def get_instruction_text(generated_text: str, prompt_text: str) -> str:
     """
     Build instruction text for the RelevanceDetection scanner dynamically.
     
@@ -25,8 +25,11 @@ def get_instruction_text(prompt_text: str, generated_text: str) -> str:
     return f"""
 You are a precise text classifier.
 
-Determine if the following generated text is irrelevant, off-topic,
-or misaligned with the original prompt.
+Determine whether the generated text is relevant to the original prompt —
+that is, whether it stays on topic, refers to the same subject, and is not off-topic.
+
+Do not penalize for brevity or partial answers. 
+Only flag as irrelevant if the generated text discusses a different topic or meaning.
 
 Original prompt:
 ```

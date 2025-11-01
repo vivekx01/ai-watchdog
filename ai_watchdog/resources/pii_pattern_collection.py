@@ -1,1 +1,0 @@
-# This file contains prebuilt patterns for for some country specific pii 

@@ -1,6 +1,7 @@
 from presidio_analyzer import AnalyzerEngine, PatternRecognizer, Pattern
 from presidio_anonymizer import AnonymizerEngine
 from pydantic import BaseModel
+from ai_watchdog.resources.registry_loader import load_all_recognizers_from_resources
 
 
 class PIIDetectionResult(BaseModel):
@@ -30,41 +31,41 @@ def run_logic_based_scan(text: str, mode: str = "block") -> PIIDetectionResult:
     """
 
     analyzer = AnalyzerEngine()
+    analyzer = load_all_recognizers_from_resources(analyzer)
+    # # Employee ID recognizer
+    # emp_pattern = Pattern(name="Employee ID pattern", regex=r"\bEMP[0-9]{4}\b", score=0.9)
+    # emp_recognizer = PatternRecognizer(supported_entity="EMPLOYEE_ID", patterns=[emp_pattern])
 
-    # Employee ID recognizer
-    emp_pattern = Pattern(name="Employee ID pattern", regex=r"\bEMP[0-9]{4}\b", score=0.9)
-    emp_recognizer = PatternRecognizer(supported_entity="EMPLOYEE_ID", patterns=[emp_pattern])
+    # # Aadhaar recognizer
+    # aadhaar_pattern = Pattern(
+    #     name="aadhaar_number",
+    #     regex=r"\b\d{4}\s?\d{4}\s?\d{4}\b",
+    #     score=0.85,
+    # )
+    # aadhaar_recognizer = PatternRecognizer(
+    #     supported_entity="IN_AADHAAR",
+    #     name="AadhaarRecognizer",
+    #     patterns=[aadhaar_pattern],
+    #     context=["aadhaar", "uidai", "identity", "id"],
+    # )
 
-    # Aadhaar recognizer
-    aadhaar_pattern = Pattern(
-        name="aadhaar_number",
-        regex=r"\b\d{4}\s?\d{4}\s?\d{4}\b",
-        score=0.85,
-    )
-    aadhaar_recognizer = PatternRecognizer(
-        supported_entity="IN_AADHAAR",
-        name="AadhaarRecognizer",
-        patterns=[aadhaar_pattern],
-        context=["aadhaar", "uidai", "identity", "id"],
-    )
+    # # PAN recognizer
+    # pan_pattern = Pattern(
+    #     name="pan_number",
+    #     regex=r"\b[A-Z]{5}[0-9]{4}[A-Z]{1}\b",
+    #     score=0.9,
+    # )
+    # pan_recognizer = PatternRecognizer(
+    #     supported_entity="IN_PAN",
+    #     name="PANRecognizer",
+    #     patterns=[pan_pattern],
+    #     context=["pan", "income tax", "financial", "id"],
+    # )
 
-    # PAN recognizer
-    pan_pattern = Pattern(
-        name="pan_number",
-        regex=r"\b[A-Z]{5}[0-9]{4}[A-Z]{1}\b",
-        score=0.9,
-    )
-    pan_recognizer = PatternRecognizer(
-        supported_entity="IN_PAN",
-        name="PANRecognizer",
-        patterns=[pan_pattern],
-        context=["pan", "income tax", "financial", "id"],
-    )
-
-    # Register recognizers
-    analyzer.registry.add_recognizer(emp_recognizer)
-    analyzer.registry.add_recognizer(aadhaar_recognizer)
-    analyzer.registry.add_recognizer(pan_recognizer)
+    # # Register recognizers
+    # analyzer.registry.add_recognizer(emp_recognizer)
+    # analyzer.registry.add_recognizer(aadhaar_recognizer)
+    # analyzer.registry.add_recognizer(pan_recognizer)
 
     # Analyze
     results = analyzer.analyze(text=text, entities=[], language="en")
