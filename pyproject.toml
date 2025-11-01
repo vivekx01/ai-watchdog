@@ -20,7 +20,8 @@ dependencies = [
     "langchain-anthropic>=1.0.0,<2.0.0",
     "langchain-google-genai>=3.0.0,<4.0.0",
     "langchain-huggingface>=1.0.0,<2.0.0",
-    "vaderSentiment>=3.3.0,<4.0.0"
+    "vaderSentiment>=3.3.0,<4.0.0",
+    "detect-secrets>=1.5.0"
 ]
 
 

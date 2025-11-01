@@ -63,3 +63,10 @@ class ScanExecutionError(WatchdogError):
             context={"text_preview": preview, "error": str(error)},
         )
 
+class LogicScanError(WatchdogError):
+    """Raised when a logic-based scanner encounters an error."""
+    def __init__(self, scanner_name, original_exception):
+        super().__init__(
+            f"Logic scan failed for scanner '{scanner_name}': {original_exception}",
+            context={"scanner": scanner_name, "error": str(original_exception)}
+        )
